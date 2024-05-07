@@ -1,4 +1,11 @@
 function NewPostForm() {
-  return <h1>What do you want to Quack?</h1>;
+  return (
+    <div>
+      <p>What do you want to Kwack today?</p>
+      <textarea></textarea>
+      <br />
+      <button>Kwack!</button>
+    </div>
+  );
 }
 export default NewPostForm;
