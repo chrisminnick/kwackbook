@@ -28,7 +28,6 @@ function App() {
         <div className="row">
           <div className="col-md-8">
             <SearchBox />
-            {/* <Feed posts={posts} layout="grid" /> */}
             <Feed>
               {posts.map((post) => (
                 <li key={post.id}>
