@@ -16,6 +16,7 @@ function LoginForm(props) {
               Password: <input type="password" id="password" />
             </label>
           </div>
+          <button>Submit</button>
         </form>
       )}
     </>
