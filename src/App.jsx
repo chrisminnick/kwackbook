@@ -10,16 +10,26 @@ import './App.css';
 function App() {
   const posts = [
     { id: 1, content: 'Why is my duck not winning?', author: 'Ben' },
-    { id: 2, content: "Horray! It's Maya day!", author: 'Maya G' },
+    { id: 2, content: "Hooray! It's Maya day!", author: 'Maya G' },
   ];
   return (
     <>
-      <Logo />
-      <LoginForm />
-      <SearchBox />
-      <Feed posts={posts} layout="grid" />
-      <NewPostForm />
-      <Footer />
+      <div className="container">
+        <div className="row">
+          <Logo />
+          <LoginForm />
+        </div>
+        <div className="row">
+          <div className="col-md-8">
+            <SearchBox />
+            <Feed posts={posts} layout="grid" />
+          </div>
+          <div className="col-md-4">
+            <NewPostForm />
+          </div>
+        </div>
+        <Footer copyrightDate={new Date()} />
+      </div>
     </>
   );
 }
