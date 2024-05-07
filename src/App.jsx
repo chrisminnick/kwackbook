@@ -5,7 +5,8 @@ import Feed from './Feed.jsx';
 import NewPostForm from './NewPostForm.jsx';
 import Footer from './Footer.jsx';
 import Post from './Post.jsx';
-
+import React from 'react';
+import LikeButton from './LikeButton';
 import './App.css';
 
 function App() {
@@ -29,9 +30,13 @@ function App() {
           <div className="col-md-8">
             <SearchBox />
             <Feed>
+            
               {posts.map((post) => (
                 <li key={post.id}>
                   <Post content={post.content} author={post.author} />
+                  <div>
+         <LikeButton />
+      </div>
                 </li>
               ))}
             </Feed>
