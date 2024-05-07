@@ -1,15 +1,13 @@
 import Post from './Post.jsx';
 
-function Feed() {
+function Feed(props) {
   return (
     <div>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {props.posts.map((post) => (
+        <li key={post.id}>
+          <Post content={post.content} author={post.author} />
+        </li>
+      ))}
     </div>
   );
 }

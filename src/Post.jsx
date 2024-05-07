@@ -1,8 +1,8 @@
-function Post() {
+function Post(props) {
   return (
-    <div>
-      <h2>When am I going to win?</h2> - quacked by Ben
-    </div>
+    <>
+      {props.content} - {props.author}
+    </>
   );
 }
 export default Post;
