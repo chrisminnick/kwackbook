@@ -1,4 +1,6 @@
+import { footerStyle } from './styleModules';
+
 function Footer() {
-  return <p>Copyright 2024</p>;
+  return <p style={footerStyle} id="footer"></p>;
 }
 export default Footer;
