@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import { useLogin } from '../hooks/useLogin.jsx';
 import Navigation from './Navigation.jsx';
+import { AuthContext } from '../context/AuthContext';
 
 import { Logo, SubHead } from './Logo.jsx';
 import AboutUs from './AboutUs.jsx';
@@ -15,7 +14,7 @@ import './App.css';
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const { loggedInStatus } = useLogin();
+  const { authState, login, logout } = useContext(AuthContext);
 
   const fetchPosts = useCallback(async function () {
     const response = await fetch('http://localhost:3000/posts');
@@ -52,7 +51,7 @@ function App() {
                       <p>
                         <b>{posts.length} Kwacks have been posted so far!</b>
                       </p>
-                      <Feed posts={posts} loggedInStatus={loggedInStatus} />
+                      <Feed posts={posts} loggedInStatus={authState} />
                     </>
                   }
                 />
@@ -61,7 +60,7 @@ function App() {
               </Routes>
             </div>
             <div className="col-md-4">
-              <NewPostForm loggedInStatus={loggedInStatus} />
+              <NewPostForm loggedInStatus={authState} />
             </div>
           </div>
           <Footer copyrightDate={new Date()} />

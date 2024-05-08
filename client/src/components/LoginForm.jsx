@@ -1,11 +1,11 @@
-import { useLogin } from '../hooks/useLogin';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 function LoginForm() {
-  const { logIn, logOut, loggedInStatus } = useLogin();
-
+  const { authState, login, logout } = useContext(AuthContext);
   return (
     <>
-      {loggedInStatus ? (
+      {authState ? (
         'Welcome'
       ) : (
         <div>
@@ -22,10 +22,10 @@ function LoginForm() {
           </div>
         </div>
       )}
-      {loggedInStatus ? (
-        <button onClick={() => logIn()}>Log In</button>
+      {authState ? (
+        <button onClick={() => logout()}>Log Out</button>
       ) : (
-        <button onClick={() => logOut()}>Log Out</button>
+        <button onClick={() => login()}>Log In</button>
       )}
     </>
   );
