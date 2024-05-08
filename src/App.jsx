@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Logo, SubHead } from './Logo.jsx';
 import LoginForm from './LoginForm.jsx';
 import SearchBox from './SearchBox.jsx';
@@ -9,11 +9,21 @@ import './App.css';
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState(false);
+  const [posts, setPosts] = useState([]);
 
-  const posts = [
-    { id: 1, content: 'Why is my duck winning so much?', author: 'Ben' },
-    { id: 2, content: "Hooray! It's Maya day!", author: 'Maya G' },
-  ];
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch('http://api.ducks.com');
+      const data = await response.json();
+      setPosts(data);
+    }
+    fetchPosts();
+  }, []);
+
+  // const posts = [
+  //   { id: 1, content: 'Why is my duck winning so much?', author: 'Ben' },
+  //   { id: 2, content: "Hooray! It's Maya day!", author: 'Maya G' },
+  // ];
   return (
     <>
       <div className="container">
@@ -32,6 +42,9 @@ function App() {
         <div className="row">
           <div className="col-md-8">
             <SearchBox />
+            <p>
+              <b>{posts.length} Kwacks have been posted so far!</b>
+            </p>
             <Feed posts={posts} loggedInStatus={loggedInStatus} />
           </div>
           <div className="col-md-4">

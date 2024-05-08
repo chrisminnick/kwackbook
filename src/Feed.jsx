@@ -1,5 +1,4 @@
 import Post from './Post';
-import LikeButton from './LikeButton';
 
 function Feed(props) {
   return (
