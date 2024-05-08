@@ -5,7 +5,7 @@ A social media app for duck racers.
 ## To-do List
 
 - style with more color
-- mascot graphics
+- mascot graphics1
 - mock search form
 - style footer to be at bottom of page
 - improve individual post style

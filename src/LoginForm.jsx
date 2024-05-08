@@ -4,7 +4,7 @@ function LoginForm(props) {
       {props.loggedInStatus ? (
         'Welcome'
       ) : (
-        <form>
+        <div>
           <p>Please Log In</p>
           <div>
             <label htmlFor="email">
@@ -16,9 +16,11 @@ function LoginForm(props) {
               Password: <input type="password" id="password" />
             </label>
           </div>
-          <button>Submit</button>
-        </form>
+        </div>
       )}
+      <button onClick={() => props.setLoggedInStatus(!props.loggedInStatus)}>
+        {props.loggedInStatus ? 'Log Out' : 'Log In'}
+      </button>
     </>
   );
 }
