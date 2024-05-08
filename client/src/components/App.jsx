@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useLogin } from '../hooks/useLogin.jsx';
+
 import { Logo, SubHead } from './Logo.jsx';
 import LoginForm from './LoginForm.jsx';
 import SearchBox from './SearchBox.jsx';
@@ -8,22 +10,18 @@ import Footer from './Footer.jsx';
 import './App.css';
 
 function App() {
-  const [loggedInStatus, setLoggedInStatus] = useState(false);
   const [posts, setPosts] = useState([]);
+  const { loggedInStatus } = useLogin();
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await fetch('http://api.ducks.com');
+      const response = await fetch('http://localhost:3000/posts');
       const data = await response.json();
       setPosts(data);
     }
     fetchPosts();
   }, []);
 
-  // const posts = [
-  //   { id: 1, content: 'Why is my duck winning so much?', author: 'Ben' },
-  //   { id: 2, content: "Hooray! It's Maya day!", author: 'Maya G' },
-  // ];
   return (
     <>
       <div className="container">
@@ -33,10 +31,7 @@ function App() {
             <SubHead />
           </div>
           <div className="col-md-2">
-            <LoginForm
-              loggedInStatus={loggedInStatus}
-              setLoggedInStatus={setLoggedInStatus}
-            />
+            <LoginForm />
           </div>
         </div>
         <div className="row">

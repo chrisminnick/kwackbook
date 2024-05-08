@@ -1,7 +1,14 @@
+import { useContext } from 'react';
+//import { loginContext } from '../context/loginContext';
+import { useLogin } from '../hooks/useLogin';
+
 function LoginForm(props) {
+  const { logIn, logOut, loggedInStatus } = useLogin();
+
+  //const lgn = useContext(loginContext);
   return (
     <>
-      {props.loggedInStatus ? (
+      {loggedInStatus ? (
         'Welcome'
       ) : (
         <div>
@@ -18,9 +25,11 @@ function LoginForm(props) {
           </div>
         </div>
       )}
-      <button onClick={() => props.setLoggedInStatus(!props.loggedInStatus)}>
-        {props.loggedInStatus ? 'Log Out' : 'Log In'}
-      </button>
+      {loggedInStatus ? (
+        <button onClick={() => logIn()}>Log In</button>
+      ) : (
+        <button onClick={() => logOut()}>Log Out</button>
+      )}
     </>
   );
 }
