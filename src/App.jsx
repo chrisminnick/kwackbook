@@ -5,8 +5,6 @@ import SearchBox from './SearchBox.jsx';
 import Feed from './Feed.jsx';
 import NewPostForm from './NewPostForm.jsx';
 import Footer from './Footer.jsx';
-import Post from './Post.jsx';
-import LikeButton from './LikeButton';
 import './App.css';
 
 function App() {
@@ -34,16 +32,7 @@ function App() {
         <div className="row">
           <div className="col-md-8">
             <SearchBox />
-            <Feed>
-              {posts.map((post) => (
-                <li key={post.id}>
-                  <Post content={post.content} author={post.author} />
-                  <div>
-                    <LikeButton />
-                  </div>
-                </li>
-              ))}
-            </Feed>
+            <Feed posts={posts} loggedInStatus={loggedInStatus} />
           </div>
           <div className="col-md-4">
             <NewPostForm loggedInStatus={loggedInStatus} />
