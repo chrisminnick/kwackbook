@@ -14,7 +14,7 @@ import './App.css';
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const { authState, login, logout } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
 
   const fetchPosts = useCallback(async function () {
     const response = await fetch('http://localhost:3000/posts');
