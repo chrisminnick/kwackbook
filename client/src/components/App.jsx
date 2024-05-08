@@ -1,7 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { useLogin } from '../hooks/useLogin.jsx';
+import Navigation from './Navigation.jsx';
 
 import { Logo, SubHead } from './Logo.jsx';
+import AboutUs from './AboutUs.jsx';
 import LoginForm from './LoginForm.jsx';
 import SearchBox from './SearchBox.jsx';
 import Feed from './Feed.jsx';
@@ -13,41 +17,56 @@ function App() {
   const [posts, setPosts] = useState([]);
   const { loggedInStatus } = useLogin();
 
-  useEffect(() => {
-    async function fetchPosts() {
-      const response = await fetch('http://localhost:3000/posts');
-      const data = await response.json();
-      setPosts(data);
-    }
-    fetchPosts();
+  const fetchPosts = useCallback(async function () {
+    const response = await fetch('http://localhost:3000/posts');
+    const data = await response.json();
+    setPosts(data);
   }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-10">
-            <Logo />
-            <SubHead />
+      <Router>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-10">
+              <Logo />
+              <SubHead />
+              <Navigation />
+            </div>
+            <div className="col-md-2">
+              <LoginForm />
+            </div>
           </div>
-          <div className="col-md-2">
-            <LoginForm />
+          <div className="row">
+            <div className="col-md-8">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <SearchBox />
+                      <p>
+                        <b>{posts.length} Kwacks have been posted so far!</b>
+                      </p>
+                      <Feed posts={posts} loggedInStatus={loggedInStatus} />
+                    </>
+                  }
+                />
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/contact" element={<h1>Contact Us</h1>} />
+              </Routes>
+            </div>
+            <div className="col-md-4">
+              <NewPostForm loggedInStatus={loggedInStatus} />
+            </div>
           </div>
+          <Footer copyrightDate={new Date()} />
         </div>
-        <div className="row">
-          <div className="col-md-8">
-            <SearchBox />
-            <p>
-              <b>{posts.length} Kwacks have been posted so far!</b>
-            </p>
-            <Feed posts={posts} loggedInStatus={loggedInStatus} />
-          </div>
-          <div className="col-md-4">
-            <NewPostForm loggedInStatus={loggedInStatus} />
-          </div>
-        </div>
-        <Footer copyrightDate={new Date()} />
-      </div>
+      </Router>
     </>
   );
 }

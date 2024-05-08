@@ -1,11 +1,8 @@
-import { useContext } from 'react';
-//import { loginContext } from '../context/loginContext';
 import { useLogin } from '../hooks/useLogin';
 
-function LoginForm(props) {
+function LoginForm() {
   const { logIn, logOut, loggedInStatus } = useLogin();
 
-  //const lgn = useContext(loginContext);
   return (
     <>
       {loggedInStatus ? (
