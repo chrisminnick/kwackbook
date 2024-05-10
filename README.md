@@ -4,6 +4,9 @@ A social media app for duck racers.
 
 ## To-do List
 
+- set up routes in server
+- set up a database
+- hook up new Kwack form
 - style with more color
 - mascot graphics1
 - mock search form
