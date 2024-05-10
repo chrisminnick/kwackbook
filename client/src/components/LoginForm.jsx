@@ -6,7 +6,7 @@ function LoginForm() {
   return (
     <>
       {authState ? (
-        'Welcome'
+        'You are logged in. '
       ) : (
         <div>
           <p>Please Log In</p>

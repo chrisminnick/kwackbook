@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './Navigation.jsx';
 import { AuthContext } from '../context/AuthContext';
 
-import { Logo, SubHead } from './Logo.jsx';
+import Logo from './Logo.jsx';
 import AboutUs from './AboutUs.jsx';
 import LoginForm from './LoginForm.jsx';
 import SearchBox from './SearchBox.jsx';
@@ -33,12 +33,11 @@ function App() {
           <div className="row">
             <div className="col-md-10">
               <Logo />
-              <SubHead />
-              <Navigation />
             </div>
             <div className="col-md-2">
               <LoginForm />
             </div>
+            <Navigation />
           </div>
           <div className="row">
             <div className="col-md-8">

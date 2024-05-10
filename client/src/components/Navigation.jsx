@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 
 function Navigation() {
+  const navStyle = {
+    display: 'flex',
+    justifyContent: 'space-around',
+    listStyle: 'none',
+    backgroundColor: '#ffffb3',
+    marginTop: '20px',
+    padding: '10px',
+  };
   return (
-    <ul style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <ul style={navStyle}>
       <li>
         <Link to="/">Home</Link>
       </li>

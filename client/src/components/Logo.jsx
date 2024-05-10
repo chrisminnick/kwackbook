@@ -1,2 +1,9 @@
-export const Logo = () => <h1>KwackBook!</h1>;
-export const SubHead = () => <h2>It&apos;s Daffy!</h2>;
+const Logo = () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <img src="/images/duck.png" />
+      <h1>KwackBook!</h1>
+    </div>
+  );
+};
+export default Logo;

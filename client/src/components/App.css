@@ -5,10 +5,7 @@
   text-align: center;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+li a {
+  text-decoration: none;
+  color: #222;
 }
